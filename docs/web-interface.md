@@ -92,17 +92,22 @@ Available options for each individual NSPanel are:
 - **Temperature calibration** - Calibrate the internal temperature sensor. Enter a negative value to bring the reported
   temperature down and vice versa.
 
-### Choose between different backgrounds for the panel
+### Display and look
 
-In 2.0 we introduce the possibility to choose between different GUI files resulting in different backgrounds on the NSPanel.
-There are 4 backgrounds to choose from. To select an image, simply press the middle of the NSPanel preview and a popup will appear. Press the background you want and scroll down and press save.
-When that's done you need to update the GUI on the panel and it should be up and running with your selected background.
+Every panel draws its UI with LVGL, which the panel firmware renders itself on a terminal TFT. There is no display
+mode to choose and no TFT background to pick. The manager serves each panel the terminal TFT for its layout (US
+portrait, or landscape for EU panels and US panels mounted sideways), and the "Display" card on the panel's page shows
+what the panel runs now.
 
-**Available Backgrounds** (US files have the same background as the EU.)
-<CenteredImage src="https://raw.githubusercontent.com/NSPManager/NSPanelManager/refs/heads/beta/docker/HMI_files/tft_automation/eu/output_tft1/example.png" alt="Background 1" figureNumber={4} />
-<CenteredImage src="https://raw.githubusercontent.com/NSPManager/NSPanelManager/refs/heads/beta/docker/HMI_files/tft_automation/eu/output_tft2/example.png" alt="Background 2" figureNumber={5} />
-<CenteredImage src="https://raw.githubusercontent.com/NSPManager/NSPanelManager/refs/heads/beta/docker/HMI_files/tft_automation/eu/output_tft3/example.png" alt="Background 3" figureNumber={6} />
-<CenteredImage src="https://raw.githubusercontent.com/NSPManager/NSPanelManager/refs/heads/beta/docker/HMI_files/tft_automation/eu/output_tft4/example.png" alt="Background 4" figureNumber={7}  />
+- **Theme** and **Background** - The panel's look. Leave both on "Keep the panel's own" to keep whatever is set on the
+  panel itself; the look can also be chosen on the panel from the swipe-down menu, and the manager saves the choice.
+- **Screen preview** - A live picture of the panel's screen, loaded straight from the panel.
+
+If the panel's page says **"Shows the legacy screen - press Update GUI"**, the panel still has the older Nextion
+TFT installed and the display shows "Display update needed". Press **Update GUI** to install the terminal TFT; nothing
+is installed automatically. A panel whose firmware is too old for LVGL says "Update the firmware first" instead.
+
+A US panel mounted sideways runs the landscape layout. The mirrored sideways orientation is not supported.
 
 ## Room page
 
@@ -113,8 +118,7 @@ rooms, please read this chapter for a full understanding on how to work with roo
 
 ### Pages
 
-Both scenes and entities are handled within "Pages". These pages are simple to use and will hold all your scenes and entities. Because the Nextion display used on the
-Sonoff NSPanel is somewhat limiting there are only predefined pages available. Pages are available in variants to display 4, 8 or 12 entities as displayed below.
+Both scenes and entities are handled within "Pages". These pages are simple to use and will hold all your scenes and entities. Only predefined page layouts are available. Pages are available in variants to display 4, 8 or 12 entities as displayed below.
 It's possible to change the type of an existing page by pressing the pen-icon in the bottom right of the page. To reorder pages simply drag and drop them by the hand-icon in the bottom center of the page you wish to move. If you have more than one page avaiable it's also possible to delete a page with all the entities by pressing the cross in the bottom right of the page.
 
 The entities/scenes that are assigned to each slot in the page can also be moved by draging and dropping them into available slots. If an entity/scene is dropped on a slot with an already assigned entity/slot they will swap places.
@@ -358,8 +362,8 @@ The following options are available:
 ## Upload
 
 You may have noticed that there is an "Upload" menu in the top menu bar. Below which there exists items for uploading
-new firmware, data file and also .tft files.
+new firmware, data file and also terminal TFT files (one per layout, US and EU).
 
 This menu is not something you will need to use unless instructed to.
-The items are used to upload new firmware, data files or GUI files for testing.
+The items are used to upload new firmware, data files or terminal TFT files for testing. The manager already ships a terminal TFT for each layout, so you do not need to upload one.
 It is mainly used for development and debugging.

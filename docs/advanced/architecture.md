@@ -22,8 +22,8 @@ There are 3 software components written for the NSPanel Manager project:
   Home Assistant and OpenHAB. The MQTTManager is also the software that send state updates from Home Assistant
   and OpenHAB to the panels when changes occur.
 - **The NSPanel firmware**: The firmware written for the NSPanel has been specifically designed to be as responsive
-  and easy to use as possible. The firmware handles all communication with the TFT (Nextion) display and with
-  MQTTManager via MQTT.
+  and easy to use as possible. The firmware draws the whole UI itself with LVGL and streams it to the
+  panel's display (a terminal TFT), and talks to MQTTManager via MQTT.
 
 ## Data flow
 
